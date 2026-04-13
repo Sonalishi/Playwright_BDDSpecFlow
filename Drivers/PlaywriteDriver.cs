@@ -9,7 +9,8 @@ namespace Playwright_BDDSpecFlow.Drivers
 {
     public class PlaywriteDriver
     {
-
+        private IPlaywright _playwright { get; set; }= null;
+        private IBrowser _browser { get; set; } = null;
         private readonly Task<IPage> _page;
 
         public PlaywriteDriver()
@@ -21,13 +22,30 @@ namespace Playwright_BDDSpecFlow.Drivers
 
         public async Task<IPage> initializePlaywright()
         {
-            var playwright = await Playwright.CreateAsync();
-            var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+            _playwright = await Playwright.CreateAsync();
+            _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
                 Headless = false
             });
-           // var context = await browser.NewContextAsync();
-            return await browser.NewPageAsync();
+           
+            return await _browser.NewPageAsync();
+        }
+
+        public async Task DisposeAsync()
+        {
+            if (Page != null)
+            {
+                await Page.CloseAsync();
+            }
+            if (_browser != null)
+            {
+                await _browser.CloseAsync();
+            }
+            if (_playwright != null)
+            {
+                _playwright.Dispose();
+            }
+
         }
     }
 }

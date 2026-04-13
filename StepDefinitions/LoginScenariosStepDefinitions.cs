@@ -1,41 +1,55 @@
 using System;
+using System.Threading.Tasks;
+using Playwright_BDDSpecFlow.Drivers;
+using Playwright_BDDSpecFlow.PageObjects;
 using Reqnroll;
 
 namespace Playwright_BDDSpecFlow.StepDefinitions
 {
     [Binding]
-    public class LoginScenariosStepDefinitions
+    public class LoginScenariosStepDefinitions 
     {
+        private readonly PlaywriteDriver driver;
+        private readonly LoginPage _loginpage;
+        public LoginScenariosStepDefinitions(PlaywriteDriver driver)
+        {
+                        this.driver = driver;
+                        _loginpage = new LoginPage(driver.Page);
+        }   
+
+
         [Given("the user is on the login page")]
         public void GivenTheUserIsOnTheLoginPage()
         {
-            throw new PendingStepException();
+            driver.Page.GotoAsync("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         }
 
         [When("the user enters a valid username {string}")]
-        public void WhenTheUserEntersAValidUsername(string p0)
+        public async Task WhenTheUserEntersAValidUsername(string username)
         {
-            throw new PendingStepException();
+            await _loginpage.EnterUsername(username);
         }
 
         [When("the user enters a valid password {string}")]
-        public void WhenTheUserEntersAValidPassword(string p0)
+        public async Task WhenTheUserEntersAValidPassword(string password)
         {
-            throw new PendingStepException();
-        }
+            await _loginpage.EnterPassword(password);
+        }           
 
         [When("the user clicks the {string} button")]
-        public void WhenTheUserClicksTheButton(string login)
+        public async Task WhenTheUserClicksTheButton(string login)
         {
-            throw new PendingStepException();
+            await _loginpage.ClickLoginButton();
         }
 
-        [Then("the user should be redirected to the homepage\\/dashboard")]
-        public void ThenTheUserShouldBeRedirectedToTheHomepageDashboard()
+        [Then("the user should be redirected to the dashboard")]
+        public async Task ThenTheUserShouldBeRedirectedToTheHomepageDashboard()
         {
-            throw new PendingStepException();
+            await driver.Page.WaitForURLAsync("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+          // await ExpectedExceptionAttribute(driver.Page).ToHaveURLAsync("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+            
         }
-
+        /*
         [When("the user enters an incorrect password {string}")]
         public void WhenTheUserEntersAnIncorrectPassword(string p0)
         {
@@ -64,7 +78,7 @@ namespace Playwright_BDDSpecFlow.StepDefinitions
         public void WhenTheUserEntersAnyPassword(string p0)
         {
             throw new PendingStepException();
-        }
+        }*/
 
     }
 }
