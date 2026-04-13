@@ -19,6 +19,8 @@ namespace Playwright_BDDSpecFlow.PageObjects
         private ILocator UsernameInput => _page.Locator("input[name='username']");
         private ILocator PasswordInput => _page.Locator("input[name='password']");
         private ILocator LoginButton => _page.Locator("button[type='submit']");
+        private ILocator ErrorMessage => _page.Locator(".oxd-text.oxd-text--p.oxd-alert-content-text");
+        
 
         public async Task EnterUsername(string username)
         {
@@ -33,6 +35,14 @@ namespace Playwright_BDDSpecFlow.PageObjects
         public async Task ClickLoginButton()
         {
             await LoginButton.ClickAsync();
+        }
+
+        public async Task<string> VerifyErrorMessage(string expectedMessage)
+        {
+            
+            var actualMessage = await ErrorMessage.InnerTextAsync();
+            
+            return actualMessage;
         }
     }
 }

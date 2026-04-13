@@ -7,15 +7,15 @@ using Reqnroll;
 namespace Playwright_BDDSpecFlow.StepDefinitions
 {
     [Binding]
-    public class LoginScenariosStepDefinitions 
+    public class LoginScenariosStepDefinitions
     {
         private readonly PlaywriteDriver driver;
         private readonly LoginPage _loginpage;
         public LoginScenariosStepDefinitions(PlaywriteDriver driver)
         {
-                        this.driver = driver;
-                        _loginpage = new LoginPage(driver.Page);
-        }   
+            this.driver = driver;
+            _loginpage = new LoginPage(driver.Page);
+        }
 
 
         [Given("the user is on the login page")]
@@ -34,7 +34,7 @@ namespace Playwright_BDDSpecFlow.StepDefinitions
         public async Task WhenTheUserEntersAValidPassword(string password)
         {
             await _loginpage.EnterPassword(password);
-        }           
+        }
 
         [When("the user clicks the {string} button")]
         public async Task WhenTheUserClicksTheButton(string login)
@@ -46,28 +46,30 @@ namespace Playwright_BDDSpecFlow.StepDefinitions
         public async Task ThenTheUserShouldBeRedirectedToTheHomepageDashboard()
         {
             await driver.Page.WaitForURLAsync("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
-          // await ExpectedExceptionAttribute(driver.Page).ToHaveURLAsync("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
-            
+            // await ExpectedExceptionAttribute(driver.Page).ToHaveURLAsync("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+
         }
-        /*
+
         [When("the user enters an incorrect password {string}")]
-        public void WhenTheUserEntersAnIncorrectPassword(string p0)
+        public async Task WhenTheUserEntersAnIncorrectPassword(string password)
         {
-            throw new PendingStepException();
+              await _loginpage.EnterPassword(password);
         }
 
         [Then("the user should see an error message {string}")]
-        public void ThenTheUserShouldSeeAnErrorMessage(string p0)
+        public async Task ThenTheUserShouldSeeAnErrorMessage(string errormsg)
         {
-            throw new PendingStepException();
+            var actualMessage = await _loginpage.VerifyErrorMessage(errormsg);
+            Assert.AreEqual(errormsg, actualMessage);
+            
         }
 
         [Then("the user should remain on the login page")]
-        public void ThenTheUserShouldRemainOnTheLoginPage()
+        public async Task ThenTheUserShouldRemainOnTheLoginPageAsync()
         {
-            throw new PendingStepException();
+            await driver.Page.WaitForURLAsync("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         }
-
+        /*
         [When("the user enters a non-existent username {string}")]
         public void WhenTheUserEntersANon_ExistentUsername(string p0)
         {
