@@ -1,3 +1,3 @@
 # Playwright_BDDSpecFlow
-This is Sample HRM Test project
+This is Sample UI automation HRM Test project
 Biuld using Playwright , C# and specflow
