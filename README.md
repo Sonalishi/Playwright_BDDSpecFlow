@@ -20,17 +20,20 @@ Concepts Included
 Tools
 ------
 •	SpecFlow: For BDD and managing feature files.
+
 •	Playwright: For browser automation and cross-browser testing.
+
 •	.NET 8: The framework is built on the latest .NET platform for modern development practices.
 
 Usage
 -------
-Usage
 1.	Clone the Project:	Clone the repository into your IDE.
+   
 2.	Restore Dependencies:Restore NuGet packages by running:  dotnet restore
+   
 3.	Run Tests: dotnet test
    
-Note: I have cofigure 2 Jenkins Job locally to run the Test scripts.
+Note: I have cofigure 2 Jenkins Job locally to run the Test scripts
 
 Reporting
 ----------
