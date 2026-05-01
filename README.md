@@ -6,10 +6,15 @@ Created with lessons learned from a large number of development projects to prov
 Concepts Included
 -----------------
 • Cucumber structure (SpecFlow):- better test management 
+
 • Parallel test runs :- Playwright runs the test parallelly itself. 
+
 • Cross Browser tests:- Tests can run on multiple browsers (e.g., Chrome, Firefox, Edge) using Playwright.
+
 • Execution Mode :- User can decide the run the test on headed or Headless Mode.
+
 • Page Object pattern :- Improves test maintainability and readability by separating page-specific logic from test steps.
+
 • Video Recording :- Capture Video of each test execution for evidence purpose. 
 
 Tools
