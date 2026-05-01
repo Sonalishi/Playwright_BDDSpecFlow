@@ -11,7 +11,7 @@ Concepts Included
 
 • Cross Browser tests:- Tests can run on multiple browsers (e.g., Chrome, Firefox, Edge) using Playwright.
 
-• Execution Mode :- User can decide the run the test on headed or Headless Mode.
+• Execution Mode :- User can decide to run the test on Headed or Headless Mode.
 
 • Page Object pattern :- Improves test maintainability and readability by separating page-specific logic from test steps.
 
